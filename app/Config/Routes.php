@@ -14,3 +14,4 @@ $routes->post('/categories/update/(:num)', 'CategoryController::update/$1');
 $routes->delete('/categories/(:num)', 'CategoryController::delete/$1');
 
 $routes->resource('products', ['controller' => 'ProductController']);
+$routes->resource('incomings', ['controller' => 'IncommingController']);

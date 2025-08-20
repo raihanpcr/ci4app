@@ -11,6 +11,7 @@
         <li class="nav-item"><a href="/categories" class="nav-link">Categories</a></li>
         <li class="nav-item"><a href="/incomings" class="nav-link">Incoming</a></li>
         <li class="nav-item"><a href="/outgoings" class="nav-link">Outgoing</a></li>
+        <li class="nav-item"><a href="/report" class="nav-link">Report</a></li>
       </ul>
     </div>
   </div>
