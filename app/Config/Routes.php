@@ -15,3 +15,4 @@ $routes->delete('/categories/(:num)', 'CategoryController::delete/$1');
 
 $routes->resource('products', ['controller' => 'ProductController']);
 $routes->resource('incomings', ['controller' => 'IncommingController']);
+$routes->resource('outgoings', ['controller' => 'OutgoingController']);
