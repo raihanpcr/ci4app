@@ -3,6 +3,29 @@
 <?= $this->section('title') ?>Category<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
+
+<?php if (session()->getFlashdata('success')): ?>
+  <script>
+      Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: '<?= session()->getFlashdata('success') ?>',
+          showConfirmButton: false,
+          timer: 2000
+      });
+  </script>
+<?php endif; ?>
+
+<?php if (session()->getFlashdata('error')): ?>
+  <script>
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '<?= session()->getFlashdata('error') ?>'
+      });
+  </script>
+<?php endif; ?>
+
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h2>Category List</h2>
   <a href="/categories/create" class="btn btn-primary">+ Add Category</a>
@@ -45,14 +68,14 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       Swal.fire({
-        title: 'Yakin?',
-        text: "Data kategori akan dihapus permanen!",
+        title: 'Are you sure?',
+        text: "Category data will be permanently deleted!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Ya, hapus!',
-        cancelButtonText: 'Batal'
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
       }).then((result) => {
         if (result.isConfirmed) {
           form.submit();

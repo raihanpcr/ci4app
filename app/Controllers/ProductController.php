@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Config\Database;
 use App\Models\ProductModel;
 use App\Models\CategoryModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -10,26 +11,47 @@ class ProductController extends BaseController
 {
     protected $productModel;
     protected $categoryModel;
+    protected $db;
     
     public function __construct()
     {
         $this->productModel = new ProductModel();
         $this->categoryModel= new CategoryModel();
+        $this->db = Database::connect();
     }
 
     public function index()
     {
-        $data['products'] = $this->productModel->getProductsWithCategory()->paginate(10);
+        $categoryId = $this->request->getGet('category'); // ambil query param category dari URL
+
+        $query = $this->productModel->getProductsWithCategory();
+
+        if ($categoryId) {
+            $query = $query->where('products.category_id', $categoryId);
+        }
+
+        $data['products'] = $query->paginate(10);
         $data['pager'] = $this->productModel->pager;
+
+        // opsional, kirim semua kategori buat dropdown filter
+        $data['categories'] = $this->db->table('categories')->get()->getResult();
+
+        $data['categoryId'] = $categoryId;
+        // dd($data['categories']);
 
         return view('products/index', $data);
     }
+
 
     public function show($id)
     {
         $data['product'] = $this->productModel->find($id);
         $data['categories'] = $this->categoryModel->findAll();
-        return view('products/edit');
+
+        // cek isi array product
+        var_dump($data['product']);
+        exit;
+        return view('products/edit', $data);
     }
 
     /**
@@ -40,7 +62,7 @@ class ProductController extends BaseController
     public function new()
     {
         $data['categories'] = $this->categoryModel->findAll();
-        return view('products/edit', $data);
+        return view('products/create', $data);
     }
 
     /**
@@ -88,6 +110,7 @@ class ProductController extends BaseController
     {
         $data['product'] = $this->productModel->find($id);
         $data['categories'] = $this->categoryModel->findAll();
+        
         return view('products/edit', $data);
     }
 
@@ -98,9 +121,17 @@ class ProductController extends BaseController
      *
      * @return ResponseInterface
      */
-    public function update($id = null)
+    public function update($id)
     {
-        //
+        $this->productModel->update($id, [
+            'name'        => $this->request->getPost('name'),
+            'code'        => $this->request->getPost('code'),
+            'category_id' => $this->request->getPost('category'),
+            'unit'        => $this->request->getPost('unit'),
+            'stock'       => $this->request->getPost('stock'),
+        ]);
+
+        return redirect()->to('/products')->with('success', 'Product updated successfully');
     }
 
     /**
