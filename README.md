@@ -7,7 +7,7 @@ This project helps manage warehouse inventory including stock items, incoming/ou
 
 Berikut adalah Entity Relationship Diagram (ERD) untuk sistem ini:
 
-![ERD](public/erd_vadhana.png)
+![ERD](https://github.com/raihanpcr/ci4app/blob/main/public/erd_vadhana.PNG)
 
 ## 🚀 Features
 
