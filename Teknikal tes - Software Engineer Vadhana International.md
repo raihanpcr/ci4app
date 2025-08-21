@@ -23,12 +23,12 @@ Buatlah aplikasi Sistem Manajemen Gudang Sederhana menggunakan framework CodeIgn
     - Admin dapat mencatat transaksi barang keluar.
     - Setelah transaksi berhasil, jumlah stok barang akan berkurang sesuai jumlah barang keluar.
 6. Laporan
-    - Admin dapat melihat laporan:
+      - Admin dapat melihat laporan:
       - Barang masuk berdasarkan rentang tanggal.
       - Barang keluar berdasarkan rentang tanggal.
       - Stok barang terkini.
 6. Dashboard (Opsional / Bonus)
-    - Menampilkan ringkasan stok barang, jumlah transaksi hari ini, dll.
+      - Menampilkan ringkasan stok barang, jumlah transaksi hari ini, dll.
 
 
 ## Teknologi
