@@ -31,6 +31,21 @@
   <a href="/incomings/new" class="btn btn-primary">+ Add Incoming</a>
 </div>
 
+<form method="get" action="<?= base_url('incomings') ?>" class="row g-3 mb-3">
+  <div class="col-md-4">
+    <label class="form-label">Start Date</label>
+    <input type="date" name="start_date" class="form-control" value="<?= esc(service('request')->getGet('start_date')) ?>">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">End Date</label>
+    <input type="date" name="end_date" class="form-control" value="<?= esc(service('request')->getGet('end_date')) ?>">
+  </div>
+  <div class="col-md-4 d-flex align-items-end">
+    <button type="submit" class="btn btn-primary me-2">Filter</button>
+    <a href="<?= base_url('incomings') ?>" class="btn btn-secondary">Reset</a>
+  </div>
+</form>
+
 
 <table class="table table-bordered table-striped">
   <thead class="table-dark">

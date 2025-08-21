@@ -20,10 +20,22 @@ class IncommingController extends BaseController
       }
       public function index()
       {     
+      
+            $startDate = $this->request->getGet('start_date');
+            $endDate   = $this->request->getGet('end_date');
+
             $query = $this->incommingModel->getIncomingItemsWithProduct();
+
+            if ($startDate && $endDate) {
+            $query = $query->where('incomming_items.date >=', $startDate . ' 00:00:00')
+                        ->where('incomming_items.date <=', $endDate . ' 23:59:59');
+            }
 
             $data['incomings'] = $query->paginate(10);
             $data['pager'] = $this->incommingModel->pager;
+
+            $data['start_date']  = $startDate;
+            $data['end_date']    = $endDate;
 
             return view('incoming/index', $data);
       }

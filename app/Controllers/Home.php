@@ -6,7 +6,7 @@ class Home extends BaseController
 {
     public function index()
     {   
-        // TODO : Report
-        dd("Ini Dashboard");
+        
+        return view('home');
     }
 }

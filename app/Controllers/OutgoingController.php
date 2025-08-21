@@ -20,11 +20,21 @@ class OutgoingController extends BaseController
       }
       public function index()
       {     
+            $startDate = $this->request->getGet('start_date');
+            $endDate   = $this->request->getGet('end_date');
+
             $query = $this->outgoingModel->getOutgoingItemsWithProduct();
+
+            if ($startDate && $endDate) {
+            $query = $query->where('outgoing_items.date >=', $startDate . ' 00:00:00')
+                        ->where('outgoing_items.date <=', $endDate . ' 23:59:59');
+            }
 
             $data['outgoings'] = $query->paginate(10);
             $data['pager'] = $this->outgoingModel->pager;
 
+            $data['start_date']  = $startDate;
+            $data['end_date']    = $endDate;
             return view('outgoing/index', $data);
       }
 
