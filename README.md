@@ -3,7 +3,11 @@
 Warehouse Monitoring System built with **CodeIgniter 4** and **MyAuth** for authentication.  
 This project helps manage warehouse inventory including stock items, incoming/outgoing transactions, purchase records, and reports.
 
----
+## 🗂️ Database ERD
+
+Berikut adalah Entity Relationship Diagram (ERD) untuk sistem ini:
+
+![ERD](public/erd_vadhana.png)
 
 ## 🚀 Features
 
@@ -24,7 +28,7 @@ This project helps manage warehouse inventory including stock items, incoming/ou
 
 ```bash
 git clone https://github.com/raihanpcr/ci4app.git
-cd ci4-warehouse
+cd ci4app
 ```
 
 ### 2️⃣ Install Dependencies
